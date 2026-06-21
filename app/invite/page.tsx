@@ -292,6 +292,7 @@ export default function InvitePage() {
           {/* ── Cream panel ── */}
           <div style={{
             width: "100%",
+            marginTop: "-2px",
             background: "#f9f8f4",
             display: "flex",
             flexDirection: "column",
@@ -351,8 +352,7 @@ export default function InvitePage() {
                     <label style={{ fontFamily: sans, fontSize: "11px", color: "#9aa885", display: "block", marginBottom: "6px" }}>Will you be bringing anyone?</label>
                     <select value={form.plusOnes} onChange={(e) => setForm({ ...form, plusOnes: e.target.value })} style={{ ...inputStyle, appearance: "auto" as "auto" }}>
                       <option value="0">Just me</option>
-                      <option value="1">+1 guest</option>
-                      <option value="2">+2 guests</option>
+                      <option value="1">+1</option>
                     </select>
                   </div>
                   <div>
