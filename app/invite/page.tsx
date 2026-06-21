@@ -160,6 +160,9 @@ export default function InvitePage() {
           filter: brightness(1.08);
           transform: scale(1.02);
         }
+        @media (max-width: 380px) {
+          .gift-grid { grid-template-columns: 1fr !important; }
+        }
       `}</style>
 
       {/* Full-bleed stripes + centered column */}
@@ -224,34 +227,34 @@ export default function InvitePage() {
           <img src="/elements/champagne.webp" alt="" className="decor-depth" style={{
             position: "absolute", left: 0, top: "50%",
             width: "clamp(110px,13vw,170px)", zIndex: 20, pointerEvents: "none",
-            animation: "fade-in 0.6s ease 0.5s both, float-a 4s ease-in-out 1.2s infinite",
+            animation: "fade-in 0.6s ease 0.5s both, float-a 4s ease-in-out 0s infinite",
           }} />
           <img src="/elements/bucket.webp" alt="" className="decor-depth" style={{
             position: "absolute", left: 0, top: "78%",
             width: "clamp(110px,13vw,170px)", zIndex: 20, pointerEvents: "none",
-            animation: "fade-in 0.6s ease 0.7s both, float-f 5s ease-in-out 1.4s infinite",
+            animation: "fade-in 0.6s ease 0.7s both, float-f 5s ease-in-out 0s infinite",
           }} />
           <img src="/elements/ball-pink.webp" alt="" className="decor-depth" style={{
             position: "absolute", left: 0, top: "33%",
             width: "clamp(72px,8vw,108px)", zIndex: 20, pointerEvents: "none",
-            animation: "fade-in 0.6s ease 0.3s both, float-b 3.5s ease-in-out 1.0s infinite",
+            animation: "fade-in 0.6s ease 0.3s both, float-b 3.5s ease-in-out 0s infinite",
           }} />
 
           {/* RIGHT */}
           <img src="/elements/spritz.webp" alt="" className="decor-depth" style={{
             position: "absolute", right: 0, top: "19%",
             width: "clamp(100px,12vw,160px)", zIndex: 20, pointerEvents: "none",
-            animation: "fade-in 0.6s ease 0.4s both, float-c 4.2s ease-in-out 1.1s infinite",
+            animation: "fade-in 0.6s ease 0.4s both, float-c 4.2s ease-in-out 0s infinite",
           }} />
           <img src="/elements/ball-pink.webp" alt="" className="decor-depth" style={{
             position: "absolute", right: 0, top: "44%",
             width: "clamp(72px,8vw,108px)", zIndex: 20, pointerEvents: "none",
-            animation: "fade-in 0.6s ease 0.6s both, float-d 3.8s ease-in-out 1.3s infinite",
+            animation: "fade-in 0.6s ease 0.6s both, float-d 3.8s ease-in-out 0s infinite",
           }} />
           <img src="/elements/martini.webp" alt="" className="decor-depth" style={{
             position: "absolute", right: 0, top: "66%",
             width: "clamp(100px,12vw,160px)", zIndex: 20, pointerEvents: "none",
-            animation: "fade-in 0.6s ease 0.8s both, float-e 4.6s ease-in-out 1.5s infinite",
+            animation: "fade-in 0.6s ease 0.8s both, float-e 4.6s ease-in-out 0s infinite",
           }} />
 
           {/* ── Arch SVG ── */}
@@ -369,6 +372,64 @@ export default function InvitePage() {
                 </>
               )}
             </div>
+
+            {/* Divider */}
+            <div style={{ width: "min(calc(100% - 32px), 480px)", height: "1px", background: "#e6ddd5", margin: "0 0 48px 0" }} />
+
+            {/* ── What to Bring ── */}
+            <div style={{ width: "min(calc(100% - 32px), 480px)", marginBottom: "48px", animation: "fade-up 0.7s cubic-bezier(.22,1,.36,1) 1.5s both" }}>
+              <h3 style={{ fontFamily: display, fontWeight: 900, fontStyle: "italic", color: "#3d5a2a", fontSize: "clamp(1.6rem,6vw,2rem)", marginBottom: "6px", textAlign: "center" }}>
+                What to Bring
+              </h3>
+              <p style={{ fontFamily: sans, color: "#c0a99c", fontSize: "12px", textAlign: "center", marginBottom: "20px", letterSpacing: "0.05em" }}>
+                Come ready to compete 🏆
+              </p>
+              <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+                {[
+                  { icon: "👟", title: "Court Shoes", desc: "Proper athletic shoes — no flip flops on the court!" },
+                  { icon: "🏓", title: "Your Paddle", desc: "Or borrow one of ours — we've got spares" },
+                  { icon: "🔥", title: "Competitive Spirit", desc: "Prizes are on the line. Don't hold back." },
+                  { icon: "💧", title: "Hydration & Snacks", desc: "It's going to be a long night of dinking" },
+                  { icon: "👗", title: "A Cute Outfit", desc: "Athletic but make it fashion — pics will be taken" },
+                  { icon: "😂", title: "Your Best Trash Talk", desc: "All-in-good-fun banter strongly encouraged" },
+                ].map((item) => (
+                  <div key={item.title} style={{ display: "flex", alignItems: "flex-start", gap: "14px", background: "#fff", borderRadius: "12px", padding: "12px 16px", border: "1px solid #ede8e2" }}>
+                    <span style={{ fontSize: "22px", flexShrink: 0, marginTop: "1px" }}>{item.icon}</span>
+                    <div>
+                      <p style={{ fontFamily: sans, fontWeight: 700, fontSize: "13px", color: "#3d5a2a", margin: "0 0 2px 0" }}>{item.title}</p>
+                      <p style={{ fontFamily: sans, fontSize: "12px", color: "#9aa885", margin: 0 }}>{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* ── Gift Ideas ── */}
+            <div style={{ width: "min(calc(100% - 32px), 480px)", marginBottom: "80px", animation: "fade-up 0.7s cubic-bezier(.22,1,.36,1) 1.7s both" }}>
+              <h3 style={{ fontFamily: display, fontWeight: 900, fontStyle: "italic", color: "#3d5a2a", fontSize: "clamp(1.6rem,6vw,2rem)", marginBottom: "6px", textAlign: "center" }}>
+                Gift Ideas
+              </h3>
+              <p style={{ fontFamily: sans, color: "#c0a99c", fontSize: "12px", textAlign: "center", marginBottom: "20px", letterSpacing: "0.05em" }}>
+                She deserves the world — here's a little inspo 🎁
+              </p>
+              <div className="gift-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px" }}>
+                {[
+                  { icon: "🏓", label: "Pickleball Paddle", sub: "She's obsessed" },
+                  { icon: "👟", label: "Court Sneakers", sub: "On-court & off" },
+                  { icon: "🍾", label: "Champagne", sub: "Celebration mode" },
+                  { icon: "💆", label: "Spa Day", sub: "She earns it" },
+                  { icon: "💎", label: "Jewelry", sub: "Something special" },
+                  { icon: "🎟️", label: "Experience Gift", sub: "Dinner, concert, trip" },
+                ].map((item) => (
+                  <div key={item.label} style={{ background: "#fff", borderRadius: "14px", padding: "16px", border: "1px solid #ede8e2", textAlign: "center" }}>
+                    <div style={{ fontSize: "28px", marginBottom: "6px" }}>{item.icon}</div>
+                    <p style={{ fontFamily: sans, fontWeight: 700, fontSize: "12px", color: "#3d5a2a", margin: "0 0 2px 0" }}>{item.label}</p>
+                    <p style={{ fontFamily: sans, fontSize: "11px", color: "#b0a090", margin: 0 }}>{item.sub}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
