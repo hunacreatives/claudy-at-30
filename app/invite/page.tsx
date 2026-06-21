@@ -313,7 +313,7 @@ export default function InvitePage() {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            paddingBottom: "80px",
+            paddingBottom: "0px",
             borderLeft: "2.2px solid #e6c3b8",
             borderRight: "2.2px solid #e6c3b8",
           }}>
@@ -421,7 +421,7 @@ export default function InvitePage() {
             </div>
 
             {/* ── Gift Ideas ── */}
-            <div style={{ width: "min(calc(100% - 32px), 480px)", marginBottom: "80px", animation: "fade-up 0.7s cubic-bezier(.22,1,.36,1) 1.7s both" }}>
+            <div style={{ width: "min(calc(100% - 32px), 480px)", marginBottom: "48px", animation: "fade-up 0.7s cubic-bezier(.22,1,.36,1) 1.7s both" }}>
               <h3 style={{ fontFamily: display, fontWeight: 900, fontStyle: "italic", color: "#3d5a2a", fontSize: "clamp(1.6rem,6vw,2rem)", marginBottom: "6px", textAlign: "center" }}>
                 Gift Ideas
               </h3>
@@ -444,6 +444,20 @@ export default function InvitePage() {
                   </div>
                 ))}
               </div>
+            </div>
+
+            {/* ── Bottom CTA ── */}
+            <div style={{ textAlign: "center", paddingBottom: "40px", animation: "fade-up 0.7s cubic-bezier(.22,1,.36,1) 1.9s both" }}>
+              <p style={{ fontFamily: sans, textTransform: "uppercase", letterSpacing: "0.15em", color: "#9aa885", fontSize: "clamp(9px,2vw,13px)", fontWeight: 600, marginBottom: "16px" }}>
+                Ready to RSVP?
+              </p>
+              <button
+                onClick={() => document.getElementById("rsvp-form")?.scrollIntoView({ behavior: "smooth", block: "center" })}
+                className="btn-attend"
+                style={{ fontFamily: sans, color: "#fff", borderRadius: "999px", padding: "14px 48px", fontSize: "13px", fontWeight: 700, cursor: "pointer", border: "none", letterSpacing: "0.1em", textTransform: "uppercase" }}
+              >
+                Confirm Attendance ›
+              </button>
             </div>
 
           </div>
