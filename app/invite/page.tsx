@@ -389,7 +389,7 @@ export default function InvitePage() {
                   { icon: "👟", title: "Court Shoes", desc: "Proper athletic shoes — no flip flops on the court!" },
                   { icon: "🏓", title: "Your Paddle", desc: "Or borrow one of ours — we've got spares" },
                   { icon: "🔥", title: "Competitive Spirit", desc: "Prizes are on the line. Don't hold back." },
-                  { icon: "💧", title: "Hydration & Snacks", desc: "It's going to be a long night of dinking" },
+                  { icon: "💧", title: "Stay Hydrated", desc: "It's going to be a long night of dinking" },
                   { icon: "👗", title: "A Cute Outfit", desc: "Athletic but make it fashion — pics will be taken" },
                   { icon: "😂", title: "Your Best Trash Talk", desc: "All-in-good-fun banter strongly encouraged" },
                 ].map((item) => (
