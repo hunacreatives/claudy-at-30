@@ -120,7 +120,7 @@ export default function AdminPage() {
                   >
                     <td className="px-5 py-3 font-medium text-[#3d5a2a]">{r.name}</td>
                     <td className="px-5 py-3 text-[#555]">{r.email}</td>
-                    <td className="px-4 py-3 text-center text-[#555]">{r.plus_ones}</td>
+                    <td className="px-4 py-3 text-center text-[#555]">{1 + r.plus_ones}</td>
                     <td className="px-5 py-3 text-[#555] italic max-w-xs truncate">
                       {r.message || "—"}
                     </td>

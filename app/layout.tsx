@@ -22,6 +22,7 @@ const dmSans = DM_Sans({
 export const metadata: Metadata = {
   title: "Claudy's 30th Birthday",
   description: "You're invited to celebrate Claudy's 30th birthday!",
+  icons: { icon: "/elements/paddle.png" },
   openGraph: {
     title: "Claudy's 30th Birthday",
     description: "Let's hit the court! Join us for Claudy's 30th.",
