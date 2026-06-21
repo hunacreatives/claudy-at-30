@@ -1,12 +1,16 @@
 import type { Metadata } from "next";
-import { Playfair_Display, DM_Sans } from "next/font/google";
+import localFont from "next/font/local";
+import { DM_Sans } from "next/font/google";
 import "./globals.css";
 
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
-  subsets: ["latin"],
-  style: ["normal", "italic"],
-  weight: ["400", "700", "900"],
+const loubag = localFont({
+  src: [
+    { path: "../public/fonts/Loubag-Regular.ttf", weight: "400" },
+    { path: "../public/fonts/Loubag-Bold.ttf", weight: "700" },
+    { path: "../public/fonts/Loubag-Black.ttf", weight: "900" },
+  ],
+  variable: "--font-display",
+  display: "swap",
 });
 
 const dmSans = DM_Sans({
@@ -26,8 +30,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${playfair.variable} ${dmSans.variable}`}>
-      <body>{children}</body>
+    <html lang="en" className={`${loubag.variable} ${dmSans.variable}`}>
+      <body className="m-0 p-0">{children}</body>
     </html>
   );
 }
