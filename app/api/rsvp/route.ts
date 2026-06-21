@@ -1,0 +1,54 @@
+import { createClient } from "@supabase/supabase-js";
+import { Resend } from "resend";
+import { NextResponse } from "next/server";
+
+const supabase = createClient(
+  process.env.SUPABASE_URL!,
+  process.env.SUPABASE_SERVICE_ROLE_KEY!
+);
+
+const resend = new Resend(process.env.RESEND_API_KEY!);
+
+export async function POST(req: Request) {
+  const { name, email, plusOnes, message } = await req.json();
+
+  if (!name || !email) {
+    return NextResponse.json({ error: "Name and email required" }, { status: 400 });
+  }
+
+  // Save to Supabase
+  const { error: dbError } = await supabase.from("claudy_rsvps").insert({
+    name,
+    email,
+    plus_ones: parseInt(plusOnes ?? "0"),
+    message: message || null,
+  });
+
+  if (dbError) {
+    console.error("DB error:", dbError);
+    return NextResponse.json({ error: "Failed to save RSVP" }, { status: 500 });
+  }
+
+  // Send email notification
+  const guestText = parseInt(plusOnes) > 0 ? `+${plusOnes} guest(s)` : "Just themselves";
+
+  await resend.emails.send({
+    from: "Claudy's 30th <noreply@hunacreatives.com>",
+    to: "hunacreatives@gmail.com",
+    subject: `🎾 New RSVP from ${name}`,
+    html: `
+      <div style="font-family: sans-serif; max-width: 500px; margin: 0 auto; padding: 24px;">
+        <h2 style="color: #3d5a2a;">New RSVP — Claudy's 30th 🎉</h2>
+        <table style="width: 100%; border-collapse: collapse; margin-top: 16px;">
+          <tr><td style="padding: 8px 0; color: #666; width: 120px;">Name</td><td style="padding: 8px 0; font-weight: 600;">${name}</td></tr>
+          <tr><td style="padding: 8px 0; color: #666;">Email</td><td style="padding: 8px 0;">${email}</td></tr>
+          <tr><td style="padding: 8px 0; color: #666;">Guests</td><td style="padding: 8px 0;">${guestText}</td></tr>
+          ${message ? `<tr><td style="padding: 8px 0; color: #666; vertical-align: top;">Message</td><td style="padding: 8px 0; font-style: italic;">"${message}"</td></tr>` : ""}
+        </table>
+        <p style="margin-top: 24px; color: #7b9a6a; font-size: 12px;">Sent from claudyat30.com</p>
+      </div>
+    `,
+  });
+
+  return NextResponse.json({ success: true });
+}
