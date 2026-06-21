@@ -12,10 +12,6 @@ export default function Home() {
   });
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
-  const scrollToInvite = () => {
-    document.getElementById("invite")?.scrollIntoView({ behavior: "smooth" });
-  };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("loading");
@@ -44,8 +40,8 @@ export default function Home() {
           className="object-cover object-center"
           priority
         />
-        <div className="absolute inset-0 bg-[#f0b4ae]/10" />
 
+        {/* Text */}
         <div className="relative z-10 px-10 md:px-20 pt-16">
           <h1
             className="font-display font-black leading-none"
@@ -63,11 +59,21 @@ export default function Home() {
           </h1>
 
           <button
-            onClick={scrollToInvite}
+            onClick={() => document.getElementById("invite")?.scrollIntoView({ behavior: "smooth" })}
             className="mt-10 inline-flex items-center gap-2 border-2 border-[#3d5a2a] text-[#3d5a2a] font-semibold rounded-full px-6 py-2.5 text-sm tracking-wide hover:bg-[#3d5a2a] hover:text-white transition-colors cursor-pointer"
           >
             Ready to Dink? <span>›</span>
           </button>
+        </div>
+
+        {/* Paddle — bottom right of hero */}
+        <div className="absolute bottom-10 right-8 md:right-20 w-36 md:w-52 z-10 rotate-12">
+          <Image src="/elements/paddle.png" alt="Paddle" width={300} height={370} className="w-full h-auto" style={{ mixBlendMode: "multiply" }} />
+        </div>
+
+        {/* Green ball — mid right */}
+        <div className="absolute top-1/3 right-4 md:right-16 w-16 md:w-24 z-10">
+          <Image src="/elements/ball-green.png" alt="Ball" width={200} height={200} className="w-full h-auto" style={{ mixBlendMode: "multiply" }} />
         </div>
       </section>
 
@@ -80,20 +86,37 @@ export default function Home() {
           className="object-cover object-center"
         />
 
-        <div className="relative z-10 flex flex-col items-center text-center py-16 px-6">
-          {/* Arch banner */}
-          <div className="mb-4">
-            <p className="font-display font-bold tracking-[0.2em] uppercase text-[#3d5a2a] text-sm">
-              Let&apos;s Hit the Court
-            </p>
-          </div>
+        {/* Scattered elements — absolute positioned */}
+        {/* Top left pink ball */}
+        <div className="absolute top-8 left-4 w-16 md:w-20 z-10 opacity-90" style={{ filter: "brightness(1.1)" }}>
+          <Image src="/elements/ball-pink.png" alt="" width={200} height={200} className="w-full h-auto" style={{ mixBlendMode: "screen" }} />
+        </div>
+        {/* Top right martini */}
+        <div className="absolute top-6 right-4 w-16 md:w-20 z-10">
+          <Image src="/elements/martini.png" alt="" width={200} height={200} className="w-full h-auto" style={{ mixBlendMode: "multiply" }} />
+        </div>
+        {/* Left champagne */}
+        <div className="absolute top-1/3 left-2 w-20 md:w-28 z-10">
+          <Image src="/elements/champagne.png" alt="" width={300} height={300} className="w-full h-auto" style={{ mixBlendMode: "multiply" }} />
+        </div>
+        {/* Right spritz */}
+        <div className="absolute top-1/2 right-2 w-16 md:w-24 z-10">
+          <Image src="/elements/spritz.png" alt="" width={200} height={250} className="w-full h-auto" style={{ mixBlendMode: "multiply" }} />
+        </div>
+        {/* Bottom bucket */}
+        <div className="absolute bottom-8 left-4 w-20 md:w-28 z-10">
+          <Image src="/elements/bucket.png" alt="" width={250} height={250} className="w-full h-auto" style={{ mixBlendMode: "multiply" }} />
+        </div>
 
-          {/* Paddle placeholder — replace src with exported Canva PNG */}
-          <div className="w-14 h-14 mb-6 opacity-70">
-            <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <ellipse cx="28" cy="20" rx="16" ry="18" fill="#3d5a2a" />
-              <rect x="24.5" y="37" width="7" height="14" rx="3.5" fill="#3d5a2a" />
-            </svg>
+        <div className="relative z-20 flex flex-col items-center text-center py-16 px-6">
+          {/* Arch text */}
+          <p className="font-display font-bold tracking-[0.2em] uppercase text-[#3d5a2a] text-sm mb-4">
+            Let&apos;s Hit the Court
+          </p>
+
+          {/* Paddle icon */}
+          <div className="w-16 mb-6">
+            <Image src="/elements/paddle.png" alt="Paddle" width={120} height={150} className="w-full h-auto" style={{ mixBlendMode: "multiply" }} />
           </div>
 
           <p className="font-dm-sans uppercase tracking-[0.25em] text-[#3d5a2a] text-xs mb-3">
@@ -116,18 +139,20 @@ export default function Home() {
           </div>
 
           <button
-            onClick={() =>
-              document.getElementById("rsvp-form")?.scrollIntoView({ behavior: "smooth" })
-            }
+            onClick={() => document.getElementById("rsvp-form")?.scrollIntoView({ behavior: "smooth" })}
             className="inline-flex items-center border-2 border-[#3d5a2a] text-[#3d5a2a] font-semibold rounded-full px-8 py-2.5 text-sm tracking-widest uppercase hover:bg-[#3d5a2a] hover:text-white transition-colors mb-14 cursor-pointer"
           >
             RSVP
           </button>
 
-          {/* Decorative scattered balls — replace with Canva PNGs when ready */}
-          <div className="flex gap-6 mb-10">
-            <div className="w-10 h-10 rounded-full bg-[#f4a8a0] border-4 border-[#e8877e] shadow" />
-            <div className="w-10 h-10 rounded-full bg-[#c8d88a] border-4 border-[#a8b860] shadow" />
+          {/* Balls row */}
+          <div className="flex gap-6 mb-10 items-center">
+            <div className="w-10">
+              <Image src="/elements/ball-green.png" alt="" width={80} height={80} className="w-full h-auto" style={{ mixBlendMode: "multiply" }} />
+            </div>
+            <div className="w-10" style={{ filter: "brightness(1.1)" }}>
+              <Image src="/elements/ball-pink.png" alt="" width={80} height={80} className="w-full h-auto" style={{ mixBlendMode: "screen" }} />
+            </div>
           </div>
 
           {/* ── RSVP FORM CARD ── */}
@@ -199,7 +224,10 @@ export default function Home() {
             )}
           </div>
 
-          <div className="mt-10 pb-10 text-4xl">🍾</div>
+          {/* Bucket at bottom */}
+          <div className="mt-10 pb-6 w-24">
+            <Image src="/elements/bucket.png" alt="" width={200} height={200} className="w-full h-auto" style={{ mixBlendMode: "multiply" }} />
+          </div>
         </div>
       </section>
     </main>
