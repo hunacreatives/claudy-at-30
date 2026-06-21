@@ -322,9 +322,12 @@ export default function InvitePage() {
               <p style={{ fontFamily: sans, textTransform: "uppercase", letterSpacing: "0.15em", color: "#9aa885", fontSize: "clamp(9px,2vw,13px)", fontWeight: 600, marginBottom: "14px", whiteSpace: "nowrap", animation: "fade-up 0.7s cubic-bezier(.22,1,.36,1) 0.35s both" }}>
                 Please join us in celebrating
               </p>
-              <h1 style={{ fontFamily: display, fontWeight: 900, fontStyle: "italic", color: "#3d5a2a", lineHeight: 1.05, fontSize: "clamp(3.2rem, 9vw, 4.2rem)", marginBottom: "24px", animation: "fade-up 0.7s cubic-bezier(.22,1,.36,1) 0.5s both" }}>
-                Claudy&apos;s <span className="text-gradient-30">30th</span><br />Birthday
+              <h1 style={{ fontFamily: display, fontWeight: 900, fontStyle: "italic", color: "#3d5a2a", lineHeight: 1.05, fontSize: "clamp(3.2rem, 9vw, 4.2rem)", marginBottom: "16px", animation: "fade-up 0.7s cubic-bezier(.22,1,.36,1) 0.5s both" }}>
+                Claudy&apos;s <span className="text-gradient-30">30th</span><br />Birthday:
               </h1>
+              <p style={{ fontFamily: sans, textTransform: "uppercase", letterSpacing: "0.15em", color: "#9aa885", fontSize: "clamp(9px,2vw,13px)", fontWeight: 600, marginBottom: "24px", animation: "fade-up 0.7s cubic-bezier(.22,1,.36,1) 0.6s both" }}>
+                Level 30: Ready to Rally. 🎾
+              </p>
               <div style={{ fontFamily: sans, textTransform: "uppercase", letterSpacing: "0.16em", color: "#9aa885", fontSize: "13px", fontWeight: 600, lineHeight: 2.2, marginBottom: "24px", animation: "fade-up 0.7s cubic-bezier(.22,1,.36,1) 0.65s both" }}>
                 <p>Saturday, July 25th</p>
                 <p>5:00pm – 2:00am</p>
