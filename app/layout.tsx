@@ -24,8 +24,16 @@ export const metadata: Metadata = {
   description: "You're invited to celebrate Claudy's 30th birthday!",
   icons: { icon: "/elements/paddle.png" },
   openGraph: {
-    title: "Claudy's 30th Birthday",
-    description: "Let's hit the court! Join us for Claudy's 30th.",
+    title: "You're Invited — Claudy's 30th Birthday! 🎾",
+    description: "Join us as we celebrate Claudy's 30th! Saturday, July 25th · 5:00 PM · Dinkside Pickleball Court. RSVP at claudyat30.com",
+    url: "https://claudyat30.com",
+    siteName: "Claudy's 30th",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "You're Invited — Claudy's 30th Birthday! 🎾",
+    description: "Join us as we celebrate Claudy's 30th! Saturday, July 25th · 5:00 PM",
   },
 };
 
