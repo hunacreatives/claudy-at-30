@@ -62,6 +62,10 @@ export default function InvitePage() {
           from { opacity: 0; }
           to   { opacity: 1; }
         }
+        @keyframes shimmer-sweep {
+          0%   { transform: translateX(-100%) skewX(-15deg); }
+          100% { transform: translateX(300%) skewX(-15deg); }
+        }
         @keyframes btn-pulse {
           0%, 100% { box-shadow: 0 0 0 0 rgba(151,166,121,0.45); }
           50%       { box-shadow: 0 0 0 8px rgba(151,166,121,0); }
@@ -183,6 +187,15 @@ export default function InvitePage() {
           position: "fixed", inset: 0, zIndex: 1, pointerEvents: "none",
           background: "radial-gradient(ellipse at center, transparent 40%, rgba(80,70,60,0.18) 100%)",
         }} />
+
+        {/* Shimmer sweep */}
+        <div style={{ position: "fixed", inset: 0, zIndex: 2, pointerEvents: "none", overflow: "hidden" }}>
+          <div style={{
+            position: "absolute", top: 0, bottom: 0, width: "40%",
+            background: "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.06) 50%, transparent 100%)",
+            animation: "shimmer-sweep 8s ease-in-out 1s infinite",
+          }} />
+        </div>
 
         {/* Background stars — scattered, slow twinkle */}
         {[
