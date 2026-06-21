@@ -239,34 +239,34 @@ export default function InvitePage() {
           {/* LEFT */}
           <img src="/elements/champagne.webp" alt="" className="decor-depth" style={{
             position: "absolute", left: 0, top: "50%",
-            width: "clamp(110px,13vw,170px)", zIndex: 20, pointerEvents: "none",
+            width: "clamp(110px,13vw,240px)", zIndex: 20, pointerEvents: "none",
             animation: "fade-in 0.6s ease 0.5s both, float-a 4s ease-in-out 0s infinite",
           }} />
           <img src="/elements/bucket.webp" alt="" className="decor-depth" style={{
             position: "absolute", left: 0, top: "78%",
-            width: "clamp(110px,13vw,170px)", zIndex: 20, pointerEvents: "none",
+            width: "clamp(110px,13vw,240px)", zIndex: 20, pointerEvents: "none",
             animation: "fade-in 0.6s ease 0.7s both, float-f 5s ease-in-out 0s infinite",
           }} />
           <img src="/elements/ball-pink.webp" alt="" className="decor-depth" style={{
             position: "absolute", left: 0, top: "33%",
-            width: "clamp(72px,8vw,108px)", zIndex: 20, pointerEvents: "none",
+            width: "clamp(72px,8vw,150px)", zIndex: 20, pointerEvents: "none",
             animation: "fade-in 0.6s ease 0.3s both, float-b 3.5s ease-in-out 0s infinite",
           }} />
 
           {/* RIGHT */}
           <img src="/elements/spritz.webp" alt="" className="decor-depth" style={{
             position: "absolute", right: 0, top: "19%",
-            width: "clamp(100px,12vw,160px)", zIndex: 20, pointerEvents: "none",
+            width: "clamp(100px,12vw,220px)", zIndex: 20, pointerEvents: "none",
             animation: "fade-in 0.6s ease 0.4s both, float-c 4.2s ease-in-out 0s infinite",
           }} />
           <img src="/elements/ball-pink.webp" alt="" className="decor-depth" style={{
             position: "absolute", right: 0, top: "44%",
-            width: "clamp(72px,8vw,108px)", zIndex: 20, pointerEvents: "none",
+            width: "clamp(72px,8vw,150px)", zIndex: 20, pointerEvents: "none",
             animation: "fade-in 0.6s ease 0.6s both, float-d 3.8s ease-in-out 0s infinite",
           }} />
           <img src="/elements/martini.webp" alt="" className="decor-depth" style={{
             position: "absolute", right: 0, top: "66%",
-            width: "clamp(100px,12vw,160px)", zIndex: 20, pointerEvents: "none",
+            width: "clamp(100px,12vw,220px)", zIndex: 20, pointerEvents: "none",
             animation: "fade-in 0.6s ease 0.8s both, float-e 4.6s ease-in-out 0s infinite",
           }} />
 

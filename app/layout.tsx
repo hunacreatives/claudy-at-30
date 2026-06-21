@@ -29,11 +29,13 @@ export const metadata: Metadata = {
     url: "https://claudyat30.com",
     siteName: "Claudy's 30th",
     type: "website",
+    images: [{ url: "https://claudyat30.com/og-image.png", width: 1366, height: 768 }],
   },
   twitter: {
     card: "summary_large_image",
     title: "You're Invited — Claudy's 30th Birthday! 🎾",
     description: "Join us as we celebrate Claudy's 30th! Saturday, July 25th · 5:00 PM",
+    images: ["https://claudyat30.com/og-image.png"],
   },
 };
 
