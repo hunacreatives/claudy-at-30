@@ -166,7 +166,7 @@ export default function InvitePage() {
       <div style={{
         minHeight: "100vh",
         width: "100%",
-        backgroundImage: "url('/bg-stripes.png')",
+        backgroundImage: "url('/bg-stripes.webp')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundAttachment: "fixed",
@@ -221,34 +221,34 @@ export default function InvitePage() {
 
           {/* ── Side decorations — centered on the pink border lines ── */}
           {/* LEFT */}
-          <img src="/elements/champagne.png" alt="" className="decor-depth" style={{
+          <img src="/elements/champagne.webp" alt="" className="decor-depth" style={{
             position: "absolute", left: 0, top: "50%",
             width: "clamp(110px,13vw,170px)", zIndex: 20, pointerEvents: "none",
             animation: "fade-in 0.6s ease 0.5s both, float-a 4s ease-in-out 1.2s infinite",
           }} />
-          <img src="/elements/bucket.png" alt="" className="decor-depth" style={{
+          <img src="/elements/bucket.webp" alt="" className="decor-depth" style={{
             position: "absolute", left: 0, top: "78%",
             width: "clamp(110px,13vw,170px)", zIndex: 20, pointerEvents: "none",
             animation: "fade-in 0.6s ease 0.7s both, float-f 5s ease-in-out 1.4s infinite",
           }} />
-          <img src="/elements/ball-pink.png" alt="" className="decor-depth" style={{
+          <img src="/elements/ball-pink.webp" alt="" className="decor-depth" style={{
             position: "absolute", left: 0, top: "33%",
             width: "clamp(72px,8vw,108px)", zIndex: 20, pointerEvents: "none",
             animation: "fade-in 0.6s ease 0.3s both, float-b 3.5s ease-in-out 1.0s infinite",
           }} />
 
           {/* RIGHT */}
-          <img src="/elements/spritz.png" alt="" className="decor-depth" style={{
+          <img src="/elements/spritz.webp" alt="" className="decor-depth" style={{
             position: "absolute", right: 0, top: "19%",
             width: "clamp(100px,12vw,160px)", zIndex: 20, pointerEvents: "none",
             animation: "fade-in 0.6s ease 0.4s both, float-c 4.2s ease-in-out 1.1s infinite",
           }} />
-          <img src="/elements/ball-pink.png" alt="" className="decor-depth" style={{
+          <img src="/elements/ball-pink.webp" alt="" className="decor-depth" style={{
             position: "absolute", right: 0, top: "44%",
             width: "clamp(72px,8vw,108px)", zIndex: 20, pointerEvents: "none",
             animation: "fade-in 0.6s ease 0.6s both, float-d 3.8s ease-in-out 1.3s infinite",
           }} />
-          <img src="/elements/martini.png" alt="" className="decor-depth" style={{
+          <img src="/elements/martini.webp" alt="" className="decor-depth" style={{
             position: "absolute", right: 0, top: "66%",
             width: "clamp(100px,12vw,160px)", zIndex: 20, pointerEvents: "none",
             animation: "fade-in 0.6s ease 0.8s both, float-e 4.6s ease-in-out 1.5s infinite",
@@ -271,14 +271,14 @@ export default function InvitePage() {
             <div style={{ position: "absolute", left: "50%", transform: "translateX(-50%) translateY(8px)", bottom: "4%", display: "flex", justifyContent: "center" }}>
               <div style={{ position: "relative" }}>
                 <div style={{ position: "relative", display: "inline-block" }}>
-                  <img src="/elements/paddle.png" alt="paddle" style={{ width: "clamp(100px,14vw,160px)", transform: "rotate(-28deg)", display: "block" }} />
+                  <img src="/elements/paddle.webp" alt="paddle" style={{ width: "clamp(100px,14vw,160px)", transform: "rotate(-28deg)", display: "block" }} />
                   <span style={{ position:"absolute", top:"8%",  left:"60%", fontSize:"16px", animation:"star-pop-1 2.4s ease-in-out infinite",        pointerEvents:"none" }}>✦</span>
                   <span style={{ position:"absolute", top:"25%", left:"20%", fontSize:"12px", animation:"star-pop-2 2.4s ease-in-out 0.6s infinite",  pointerEvents:"none", color:"#f4bfb0" }}>✦</span>
                   <span style={{ position:"absolute", top:"5%",  left:"35%", fontSize:"9px",  animation:"star-pop-3 2.4s ease-in-out 1.1s infinite",  pointerEvents:"none", color:"#ffd9cc" }}>✦</span>
                   <span style={{ position:"absolute", top:"40%", left:"75%", fontSize:"13px", animation:"star-pop-1 2.4s ease-in-out 1.6s infinite",  pointerEvents:"none", color:"#e8c4b8" }}>✦</span>
                 </div>
                 {/* Orbiting ball */}
-                <img src="/elements/ball-pink.png" alt="" style={{
+                <img src="/elements/ball-pink.webp" alt="" style={{
                   position: "absolute",
                   width: "clamp(26px,4vw,42px)",
                   top: "28%", left: "50%",

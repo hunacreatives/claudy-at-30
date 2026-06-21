@@ -27,9 +27,9 @@ export default function IntroPage() {
       const h = window.innerHeight;
 
       ballsRef.current = [
-        { x: -BALL_SIZE,    y: h * 0.3,    vx: 3,    vy: 2,   src: "/elements/ball-pink.png" },
-        { x: w * 0.6,       y: -BALL_SIZE, vx: -2,   vy: 3,   src: "/elements/ball-pink.png" },
-        { x: w + BALL_SIZE, y: h * 0.7,    vx: -2.5, vy: -2,  src: "/elements/ball-pink.png" },
+        { x: -BALL_SIZE,    y: h * 0.3,    vx: 3,    vy: 2,   src: "/elements/ball-pink.webp" },
+        { x: w * 0.6,       y: -BALL_SIZE, vx: -2,   vy: 3,   src: "/elements/ball-pink.webp" },
+        { x: w + BALL_SIZE, y: h * 0.7,    vx: -2.5, vy: -2,  src: "/elements/ball-pink.webp" },
       ];
 
       const clamp = (v: number, min: number, max: number) => Math.min(Math.max(v, min), max);
@@ -154,7 +154,7 @@ export default function IntroPage() {
       <main
         className="fixed inset-0 overflow-hidden"
         style={{
-          backgroundImage: "url('/bg-court.png')",
+          backgroundImage: "url('/bg-court.webp')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           animation: "bg-reveal 0.8s ease-out forwards",
@@ -190,7 +190,7 @@ export default function IntroPage() {
         <div className="absolute inset-0 flex flex-col items-center justify-center z-10 px-4">
           <div style={{ animation: "slide-in-left 0.7s cubic-bezier(.22,1,.36,1) 0.4s both, title-float 5s ease-in-out 1.5s infinite" }}>
             <Image
-              src="/title.png"
+              src="/title.webp"
               alt="Claudy Turns 30"
               width={500}
               height={420}
