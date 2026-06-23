@@ -1,12 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { createClient } from "@supabase/supabase-js";
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
+import { useState } from "react";
 
 type RSVP = {
   id: string;
@@ -23,29 +17,40 @@ export default function AdminPage() {
   const [error, setError] = useState(false);
   const [rsvps, setRsvps] = useState<RSVP[]>([]);
   const [loading, setLoading] = useState(false);
+  const [confirmId, setConfirmId] = useState<string | null>(null);
+  const [deleting, setDeleting] = useState(false);
 
-  const handleLogin = (e: React.FormEvent) => {
+  // Validate by asking the server (which checks the password and uses the
+  // service-role key). No data is reachable without the correct password.
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (password === process.env.NEXT_PUBLIC_ADMIN_PASSWORD) {
+    setLoading(true);
+    setError(false);
+    const res = await fetch("/api/admin/rsvps", {
+      headers: { "x-admin-password": password },
+    });
+    if (res.ok) {
+      const { rsvps } = await res.json();
+      setRsvps(rsvps ?? []);
       setAuthed(true);
-      setError(false);
     } else {
       setError(true);
     }
+    setLoading(false);
   };
 
-  useEffect(() => {
-    if (!authed) return;
-    setLoading(true);
-    supabase
-      .from("claudy_rsvps")
-      .select("*")
-      .order("created_at", { ascending: false })
-      .then(({ data }) => {
-        setRsvps(data ?? []);
-        setLoading(false);
-      });
-  }, [authed]);
+  const deleteRsvp = async (id: string) => {
+    setDeleting(true);
+    const res = await fetch(`/api/admin/rsvps?id=${encodeURIComponent(id)}`, {
+      method: "DELETE",
+      headers: { "x-admin-password": password },
+    });
+    if (res.ok) {
+      setRsvps((prev) => prev.filter((r) => r.id !== id));
+    }
+    setConfirmId(null);
+    setDeleting(false);
+  };
 
   const totalGuests = rsvps.reduce((sum, r) => sum + 1 + r.plus_ones, 0);
 
@@ -110,6 +115,7 @@ export default function AdminPage() {
                   <th className="text-center px-4 py-3 font-semibold">+Guests</th>
                   <th className="text-left px-5 py-3 font-semibold">Message</th>
                   <th className="text-left px-5 py-3 font-semibold">Date</th>
+                  <th className="px-4 py-3"></th>
                 </tr>
               </thead>
               <tbody>
@@ -131,6 +137,32 @@ export default function AdminPage() {
                         hour: "2-digit",
                         minute: "2-digit",
                       })}
+                    </td>
+                    <td className="px-4 py-3 text-right whitespace-nowrap">
+                      {confirmId === r.id ? (
+                        <span className="inline-flex gap-1">
+                          <button
+                            onClick={() => deleteRsvp(r.id)}
+                            disabled={deleting}
+                            className="text-xs bg-red-500 text-white px-2 py-1 rounded cursor-pointer hover:bg-red-600 disabled:opacity-50 transition-colors"
+                          >
+                            {deleting ? "…" : "Confirm"}
+                          </button>
+                          <button
+                            onClick={() => setConfirmId(null)}
+                            className="text-xs border border-gray-200 text-gray-400 px-2 py-1 rounded cursor-pointer hover:bg-gray-50 transition-colors"
+                          >
+                            Cancel
+                          </button>
+                        </span>
+                      ) : (
+                        <button
+                          onClick={() => setConfirmId(r.id)}
+                          className="text-xs text-red-400 hover:text-red-600 cursor-pointer transition-colors"
+                        >
+                          Delete
+                        </button>
+                      )}
                     </td>
                   </tr>
                 ))}
