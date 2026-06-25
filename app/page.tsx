@@ -64,7 +64,7 @@ export default function IntroPage() {
             <button
               onClick={handleDink}
               style={{ animation: "btn-glow-pulse 2.2s ease-in-out 2s infinite", background: "linear-gradient(135deg, #a8be89 0%, #7d9e62 100%)" }}
-              className="w-full inline-flex items-center justify-center gap-3 text-white font-bold rounded-full px-6 py-11 text-2xl md:text-3xl md:py-12 hover:brightness-110 transition-all cursor-pointer"
+              className="w-full inline-flex items-center justify-center gap-3 text-white font-bold rounded-full px-6 py-11 text-2xl md:text-3xl md:py-12 hover:brightness-110 transition-all cursor-pointer whitespace-nowrap"
             >
               Ready to Dink? ›
             </button>
