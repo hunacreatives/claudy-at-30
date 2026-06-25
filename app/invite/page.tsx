@@ -53,6 +53,8 @@ export default function InvitePage() {
 
   return (
     <div style={{ width: "100%", display: "flex", flexDirection: "column", overflowX: "hidden" }}>
+
+
       <style>{`
         @keyframes fade-up {
           from { opacity: 0; transform: translateY(20px); }
@@ -94,9 +96,12 @@ export default function InvitePage() {
           0%, 100% { transform: translateX(-50%) translateY(0px); }
           50%       { transform: translateX(-50%) translateY(-10px); }
         }
-        @keyframes orbit-paddle {
-          from { transform: translate(-50%, -50%) rotate(0deg) translate(52px) rotate(0deg); }
-          to   { transform: translate(-50%, -50%) rotate(360deg) translate(52px) rotate(-360deg); }
+        @keyframes bounce-on-paddle {
+          0%        { transform: translate(-50%, 0px) scaleY(1) scaleX(1); animation-timing-function: cubic-bezier(.33,0,.66,0); }
+          42%       { transform: translate(-50%, -55px) scaleY(1) scaleX(1); animation-timing-function: cubic-bezier(.33,1,.66,1); }
+          50%       { transform: translate(-50%, -55px) scaleY(1) scaleX(1); animation-timing-function: cubic-bezier(.33,0,.66,0); }
+          92%       { transform: translate(-50%, 0px) scaleY(0.75) scaleX(1.25); animation-timing-function: cubic-bezier(.33,1,.66,1); }
+          100%      { transform: translate(-50%, 0px) scaleY(1) scaleX(1); }
         }
         @keyframes star-pop-1 {
           0%,100% { opacity:0; transform: scale(0) rotate(0deg); }
@@ -224,7 +229,7 @@ export default function InvitePage() {
           }}>✦</div>
         ))}
         {/* Centered column */}
-        <div className="panel-3d" style={{
+        <div style={{
           width: "min(720px, 88vw)",
           minHeight: "100vh",
           display: "flex",
@@ -234,41 +239,14 @@ export default function InvitePage() {
           zIndex: 10,
           overflow: "visible",
         }}>
+          {/* Section 1 elements */}
+          <img src="/elements/ball-pink.webp" alt="" className="decor-depth" style={{ position: "absolute", left: 0, top: "12%", width: "clamp(72px,8vw,130px)", zIndex: 20, pointerEvents: "none", animation: "fade-in 0.6s ease 0.3s both, float-b 3.5s ease-in-out 0s infinite" }} />
+          <img src="/elements/champagne.webp" alt="" className="decor-depth" style={{ position: "absolute", left: 0, top: "42%", width: "clamp(110px,13vw,200px)", zIndex: 20, pointerEvents: "none", animation: "fade-in 0.6s ease 0.5s both, float-a 4s ease-in-out 0s infinite" }} />
+          <img src="/elements/bucket.webp"    alt="" className="decor-depth" style={{ position: "absolute", left: 0, top: "72%", width: "clamp(100px,12vw,190px)", zIndex: 20, pointerEvents: "none", animation: "fade-in 0.6s ease 0.9s both, float-f 5s ease-in-out 0s infinite" }} />
+          <img src="/elements/spritz.webp"    alt="" className="decor-depth" style={{ position: "absolute", right: 0, top: "8%",  width: "clamp(100px,12vw,190px)", zIndex: 20, pointerEvents: "none", animation: "fade-in 0.6s ease 0.4s both, float-c 4.2s ease-in-out 0s infinite" }} />
+          <img src="/elements/ball-pink.webp" alt="" className="decor-depth" style={{ position: "absolute", right: 0, top: "38%", width: "clamp(72px,8vw,130px)", zIndex: 20, pointerEvents: "none", animation: "fade-in 0.6s ease 0.6s both, float-d 3.8s ease-in-out 0s infinite" }} />
+          <img src="/elements/martini.webp"   alt="" className="decor-depth" style={{ position: "absolute", right: 0, top: "68%", width: "clamp(100px,12vw,190px)", zIndex: 20, pointerEvents: "none", animation: "fade-in 0.6s ease 0.8s both, float-e 4.6s ease-in-out 0s infinite" }} />
 
-          {/* ── Side decorations — centered on the pink border lines ── */}
-          {/* LEFT */}
-          <img src="/elements/champagne.webp" alt="" className="decor-depth" style={{
-            position: "absolute", left: 0, top: "50%",
-            width: "clamp(110px,13vw,240px)", zIndex: 20, pointerEvents: "none",
-            animation: "fade-in 0.6s ease 0.5s both, float-a 4s ease-in-out 0s infinite",
-          }} />
-          <img src="/elements/bucket.webp" alt="" className="decor-depth" style={{
-            position: "absolute", left: 0, top: "78%",
-            width: "clamp(110px,13vw,240px)", zIndex: 20, pointerEvents: "none",
-            animation: "fade-in 0.6s ease 0.7s both, float-f 5s ease-in-out 0s infinite",
-          }} />
-          <img src="/elements/ball-pink.webp" alt="" className="decor-depth" style={{
-            position: "absolute", left: 0, top: "33%",
-            width: "clamp(72px,8vw,150px)", zIndex: 20, pointerEvents: "none",
-            animation: "fade-in 0.6s ease 0.3s both, float-b 3.5s ease-in-out 0s infinite",
-          }} />
-
-          {/* RIGHT */}
-          <img src="/elements/spritz.webp" alt="" className="decor-depth" style={{
-            position: "absolute", right: 0, top: "19%",
-            width: "clamp(100px,12vw,220px)", zIndex: 20, pointerEvents: "none",
-            animation: "fade-in 0.6s ease 0.4s both, float-c 4.2s ease-in-out 0s infinite",
-          }} />
-          <img src="/elements/ball-pink.webp" alt="" className="decor-depth" style={{
-            position: "absolute", right: 0, top: "44%",
-            width: "clamp(72px,8vw,150px)", zIndex: 20, pointerEvents: "none",
-            animation: "fade-in 0.6s ease 0.6s both, float-d 3.8s ease-in-out 0s infinite",
-          }} />
-          <img src="/elements/martini.webp" alt="" className="decor-depth" style={{
-            position: "absolute", right: 0, top: "66%",
-            width: "clamp(100px,12vw,220px)", zIndex: 20, pointerEvents: "none",
-            animation: "fade-in 0.6s ease 0.8s both, float-e 4.6s ease-in-out 0s infinite",
-          }} />
 
           {/* ── Arch SVG ── */}
           <div style={{ width: "100%", position: "relative", animation: "fade-up 0.7s cubic-bezier(.22,1,.36,1) 0.1s both" }}>
@@ -293,13 +271,13 @@ export default function InvitePage() {
                   <span style={{ position:"absolute", top:"5%",  left:"35%", fontSize:"9px",  animation:"star-pop-3 2.4s ease-in-out 1.1s infinite",  pointerEvents:"none", color:"#ffd9cc" }}>✦</span>
                   <span style={{ position:"absolute", top:"40%", left:"75%", fontSize:"13px", animation:"star-pop-1 2.4s ease-in-out 1.6s infinite",  pointerEvents:"none", color:"#e8c4b8" }}>✦</span>
                 </div>
-                {/* Orbiting ball */}
+                {/* Bouncing ball */}
                 <img src="/elements/ball-pink.webp" alt="" style={{
                   position: "absolute",
-                  width: "clamp(26px,4vw,42px)",
-                  top: "28%", left: "50%",
+                  width: "clamp(22px,3.5vw,36px)",
+                  top: "12%", left: "38%",
                   zIndex: 2,
-                  animation: "orbit-paddle 3s linear infinite",
+                  animation: "bounce-on-paddle 1.1s ease-in-out infinite",
                 }} />
               </div>
             </div>
@@ -313,9 +291,12 @@ export default function InvitePage() {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            paddingBottom: "0px",
+            paddingBottom: "48px",
             borderLeft: "2.2px solid #e6c3b8",
             borderRight: "2.2px solid #e6c3b8",
+            borderBottom: "2.2px solid #e6c3b8",
+            borderBottomLeftRadius: "28px",
+            borderBottomRightRadius: "28px",
           }}>
 
             <div style={{ textAlign: "center", padding: "32px 40px 0", width: "100%" }}>
@@ -328,7 +309,7 @@ export default function InvitePage() {
               <p style={{ fontFamily: sans, textTransform: "uppercase", letterSpacing: "0.15em", color: "#9aa885", fontSize: "clamp(9px,2vw,13px)", fontWeight: 600, marginBottom: "24px", animation: "fade-up 0.7s cubic-bezier(.22,1,.36,1) 0.6s both" }}>
                 Level 30: Ready to Rally. 🎾
               </p>
-              <div style={{ fontFamily: sans, textTransform: "uppercase", letterSpacing: "0.16em", color: "#9aa885", fontSize: "13px", fontWeight: 600, lineHeight: 2.2, marginBottom: "24px", animation: "fade-up 0.7s cubic-bezier(.22,1,.36,1) 0.65s both" }}>
+              <div style={{ fontFamily: sans, textTransform: "uppercase", letterSpacing: "0.16em", color: "#9aa885", fontSize: "13px", fontWeight: 400, lineHeight: 2.2, marginBottom: "24px", animation: "fade-up 0.7s cubic-bezier(.22,1,.36,1) 0.65s both" }}>
                 <p>Saturday, July 25th</p>
                 <p>5:00pm – 2:00am</p>
                 <p>Dinkside Pickleball Court</p>
@@ -346,9 +327,40 @@ export default function InvitePage() {
                   <p style={{ fontFamily: display, fontWeight: 900, fontStyle: "italic", color: "#3d5a2a", fontSize: "26px", marginBottom: "10px" }}>
                     You&apos;re on the list!
                   </p>
-                  <p style={{ fontFamily: sans, color: "#c0a99c", fontSize: "14px", lineHeight: 1.7 }}>
+                  <p style={{ fontFamily: sans, color: "#c0a99c", fontSize: "14px", lineHeight: 1.7, marginBottom: "28px" }}>
                     Can&apos;t wait to celebrate with you.<br />See you on the court!
                   </p>
+
+                  <div style={{ borderTop: "1px solid #f0ebe4", paddingTop: "24px" }}>
+                    <p style={{ fontFamily: sans, textTransform: "uppercase", letterSpacing: "0.15em", color: "#9aa885", fontSize: "10px", fontWeight: 600, marginBottom: "8px" }}>
+                      Getting There
+                    </p>
+                    <p style={{ fontFamily: sans, fontSize: "12px", color: "#b0a090", marginBottom: "14px", lineHeight: 1.7 }}>
+                      Dinkside Pickleball Court<br />
+                      G28C+8V9, Ext, Rizal St<br />
+                      Poblacion, Danao, Cebu
+                    </p>
+                    <a
+                      href="https://maps.google.com/?q=G28C%2B8V9+Danao+Cebu"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ display: "block", borderRadius: "12px", overflow: "hidden", border: "1px solid #e6ddd5", textDecoration: "none" }}
+                    >
+                      <iframe
+                        src="https://maps.google.com/maps?q=G28C%2B8V9+Danao+Cebu&output=embed&z=16"
+                        width="100%"
+                        height="160"
+                        style={{ display: "block", border: "none", pointerEvents: "none" }}
+                        loading="lazy"
+                      />
+                      <div style={{ background: "#f9f8f4", padding: "8px 12px", display: "flex", alignItems: "center", gap: "6px" }}>
+                        <span style={{ fontSize: "12px" }}>📍</span>
+                        <p style={{ fontFamily: sans, fontSize: "11px", color: "#7a9a6a", fontWeight: 600, margin: 0, letterSpacing: "0.05em" }}>
+                          Open in Google Maps ›
+                        </p>
+                      </div>
+                    </a>
+                  </div>
                 </div>
               ) : (
                 <>
@@ -389,36 +401,77 @@ export default function InvitePage() {
               )}
             </div>
 
-            {/* Divider */}
-            <div style={{ width: "min(calc(100% - 32px), 480px)", height: "1px", background: "#e6ddd5", margin: "0 0 48px 0" }} />
+          </div>
+        </div>
+      </div>
 
-            {/* ── What to Bring ── */}
-            <div style={{ width: "min(calc(100% - 32px), 480px)", marginBottom: "48px", animation: "fade-up 0.7s cubic-bezier(.22,1,.36,1) 1.5s both" }}>
-              <h3 style={{ fontFamily: display, fontWeight: 900, fontStyle: "italic", color: "#3d5a2a", fontSize: "clamp(1.6rem,6vw,2rem)", marginBottom: "6px", textAlign: "center" }}>
-                What to Bring
-              </h3>
-              <p style={{ fontFamily: sans, color: "#c0a99c", fontSize: "12px", textAlign: "center", marginBottom: "20px", letterSpacing: "0.05em" }}>
-                Come ready to compete 🏆
-              </p>
-              <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-                {[
-                  { icon: "👟", title: "Court Shoes", desc: "Proper athletic shoes — no flip flops on the court!" },
-                  { icon: "🏓", title: "Your Paddle", desc: "Or borrow one of ours — we've got spares" },
-                  { icon: "🔥", title: "Competitive Spirit", desc: "Prizes are on the line. Don't hold back." },
-                  { icon: "💧", title: "Stay Hydrated", desc: "It's going to be a long night of dinking" },
-                  { icon: "👗", title: "A Cute Outfit", desc: "Athletic but make it fashion — pics will be taken" },
-                  { icon: "😂", title: "Your Best Trash Talk", desc: "All-in-good-fun banter strongly encouraged" },
-                ].map((item) => (
-                  <div key={item.title} style={{ display: "flex", alignItems: "flex-start", gap: "14px", background: "#fff", borderRadius: "12px", padding: "12px 16px", border: "1px solid #ede8e2" }}>
-                    <span style={{ fontSize: "22px", flexShrink: 0, marginTop: "1px" }}>{item.icon}</span>
-                    <div>
-                      <p style={{ fontFamily: sans, fontWeight: 700, fontSize: "13px", color: "#3d5a2a", margin: "0 0 2px 0" }}>{item.title}</p>
-                      <p style={{ fontFamily: sans, fontSize: "12px", color: "#9aa885", margin: 0 }}>{item.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
+      {/* ── What to Bring — striped bg + cream card ── */}
+      <div style={{
+        width: "100%",
+        backgroundImage: "url('/bg-stripes.webp')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundAttachment: "fixed",
+        display: "flex",
+        justifyContent: "center",
+        padding: "32px 24px 16px",
+      }}>
+        <div style={{ position: "relative", width: "min(720px, 88vw)" }}>
+          {/* Section 2 elements — staggered */}
+          <img src="/elements/bucket.webp"  alt="" className="decor-depth" style={{ position: "absolute", left: 0, top: "5%", width: "clamp(100px,12vw,180px)", zIndex: 20, pointerEvents: "none", animation: "fade-in 0.6s ease 0.7s both, float-f 5s ease-in-out 0s infinite" }} />
+          <img src="/elements/martini.webp" alt="" className="decor-depth" style={{ position: "absolute", right: 0, top: "75%", width: "clamp(90px,11vw,170px)", zIndex: 20, pointerEvents: "none", animation: "fade-in 0.6s ease 0.8s both, float-e 4.6s ease-in-out 0s infinite" }} />
+          <div style={{
+            background: "#f9f8f4",
+            borderRadius: "28px",
+            border: "2.2px solid #e6c3b8",
+            padding: "48px 24px 0px",
+            boxShadow: "0 24px 60px rgba(0,0,0,0.10), 0 6px 20px rgba(0,0,0,0.06)",
+          }}>
+            <h3 style={{ fontFamily: display, fontWeight: 900, fontStyle: "italic", color: "#3d5a2a", fontSize: "clamp(1.6rem,6vw,2rem)", marginBottom: "6px", textAlign: "center" }}>
+              What to Bring
+            </h3>
+            <p style={{ fontFamily: sans, color: "#c0a99c", fontSize: "12px", textAlign: "center", marginBottom: "4px", letterSpacing: "0.05em", lineHeight: 1.7 }}>
+              Dress for the court — it&apos;s going to be a long, sweaty, glorious night. 🎾
+            </p>
+            <div style={{ overflow: "hidden", borderRadius: "12px" }}>
+              <img
+                src="/what-to-bring.png"
+                alt="What to Bring"
+                style={{ width: "100%", display: "block", marginTop: "-8%" }}
+              />
             </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ── Gift Ideas + Directions + CTA ── */}
+      <div style={{
+        width: "100%",
+        backgroundImage: "url('/bg-stripes.webp')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundAttachment: "fixed",
+        display: "flex",
+        justifyContent: "center",
+        padding: "16px 24px 48px",
+      }}>
+        <div style={{ position: "relative", width: "min(720px, 88vw)" }}>
+          {/* Section 3 elements — staggered so left/right don't align */}
+          <img src="/elements/champagne.webp" alt="" className="decor-depth" style={{ position: "absolute", left: 0, top: "15%", width: "clamp(100px,12vw,190px)", zIndex: 20, pointerEvents: "none", animation: "fade-in 0.6s ease 0.5s both, float-a 4s ease-in-out 0s infinite" }} />
+          <img src="/elements/ball-pink.webp" alt="" className="decor-depth" style={{ position: "absolute", left: 0, top: "55%", width: "clamp(72px,8vw,130px)", zIndex: 20, pointerEvents: "none", animation: "fade-in 0.6s ease 0.3s both, float-b 3.5s ease-in-out 0s infinite" }} />
+          <img src="/elements/martini.webp"   alt="" className="decor-depth" style={{ position: "absolute", right: 0, top: "35%", width: "clamp(100px,12vw,190px)", zIndex: 20, pointerEvents: "none", animation: "fade-in 0.6s ease 0.8s both, float-e 4.6s ease-in-out 0s infinite" }} />
+          <img src="/elements/ball-pink.webp" alt="" className="decor-depth" style={{ position: "absolute", right: 0, top: "72%", width: "clamp(72px,8vw,130px)", zIndex: 20, pointerEvents: "none", animation: "fade-in 0.6s ease 0.6s both, float-d 3.8s ease-in-out 0s infinite" }} />
+        <div style={{
+          background: "#f9f8f4",
+          borderRadius: "28px",
+          border: "2.2px solid #e6c3b8",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          paddingTop: "48px",
+          overflow: "hidden",
+          boxShadow: "0 24px 60px rgba(0,0,0,0.10), 0 6px 20px rgba(0,0,0,0.06)",
+        }}>
 
             {/* ── Gift Ideas ── */}
             <div style={{ width: "min(calc(100% - 32px), 480px)", marginBottom: "48px", animation: "fade-up 0.7s cubic-bezier(.22,1,.36,1) 1.7s both" }}>
@@ -446,8 +499,41 @@ export default function InvitePage() {
               </div>
             </div>
 
+            {/* ── Directions ── */}
+            {status !== "success" && <div style={{ width: "min(calc(100% - 32px), 480px)", marginBottom: "48px", animation: "fade-up 0.7s cubic-bezier(.22,1,.36,1) 1.85s both" }}>
+              <h3 style={{ fontFamily: display, fontWeight: 900, fontStyle: "italic", color: "#3d5a2a", fontSize: "clamp(1.4rem,5vw,1.8rem)", marginBottom: "6px", textAlign: "center" }}>
+                Getting There
+              </h3>
+              <p style={{ fontFamily: sans, textTransform: "uppercase", letterSpacing: "0.15em", color: "#9aa885", fontSize: "clamp(9px,2vw,11px)", fontWeight: 600, textAlign: "center", marginBottom: "16px" }}>
+                Dinkside Pickleball Court
+              </p>
+              <p style={{ fontFamily: sans, fontSize: "12px", color: "#b0a090", textAlign: "center", marginBottom: "16px", lineHeight: 1.7 }}>
+                G28C+8V9, Ext, Rizal St, Poblacion<br />Danao, Cebu
+              </p>
+              <a
+                href="https://maps.google.com/?q=G28C%2B8V9+Danao+Cebu"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ display: "block", borderRadius: "14px", overflow: "hidden", border: "1px solid #e6ddd5", textDecoration: "none" }}
+              >
+                <iframe
+                  src="https://maps.google.com/maps?q=G28C%2B8V9+Danao+Cebu&output=embed&z=16"
+                  width="100%"
+                  height="200"
+                  style={{ display: "block", border: "none", pointerEvents: "none" }}
+                  loading="lazy"
+                />
+                <div style={{ background: "#f9f8f4", padding: "10px 14px", display: "flex", alignItems: "center", gap: "8px" }}>
+                  <span style={{ fontSize: "14px" }}>📍</span>
+                  <p style={{ fontFamily: sans, fontSize: "11px", color: "#7a9a6a", fontWeight: 600, margin: 0, letterSpacing: "0.05em" }}>
+                    Open in Google Maps ›
+                  </p>
+                </div>
+              </a>
+            </div>}
+
             {/* ── Bottom CTA ── */}
-            <div style={{ textAlign: "center", paddingBottom: "40px", animation: "fade-up 0.7s cubic-bezier(.22,1,.36,1) 1.9s both" }}>
+            {status !== "success" && <div style={{ textAlign: "center", paddingBottom: "40px", animation: "fade-up 0.7s cubic-bezier(.22,1,.36,1) 1.9s both" }}>
               <p style={{ fontFamily: sans, textTransform: "uppercase", letterSpacing: "0.15em", color: "#9aa885", fontSize: "clamp(9px,2vw,13px)", fontWeight: 600, marginBottom: "16px" }}>
                 Ready to RSVP?
               </p>
@@ -458,9 +544,9 @@ export default function InvitePage() {
               >
                 Confirm Attendance ›
               </button>
-            </div>
+            </div>}
 
-          </div>
+        </div>
         </div>
       </div>
 

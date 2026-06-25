@@ -1,22 +1,23 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import { DM_Sans } from "next/font/google";
+import { Fraunces } from "next/font/google";
 import "./globals.css";
 
-const loubag = localFont({
-  src: [
-    { path: "../public/fonts/Loubag-Regular.ttf", weight: "400" },
-    { path: "../public/fonts/Loubag-Bold.ttf", weight: "700" },
-    { path: "../public/fonts/Loubag-Black.ttf", weight: "900" },
-  ],
+const fraunces = Fraunces({
   variable: "--font-display",
+  subsets: ["latin"],
+  weight: ["400", "700", "900"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 
-const dmSans = DM_Sans({
+const garet = localFont({
+  src: [
+    { path: "../public/fonts/Garet-Book.ttf", weight: "400" },
+    { path: "../public/fonts/Garet-Heavy.ttf", weight: "700" },
+  ],
   variable: "--font-dm-sans",
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -41,7 +42,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${loubag.variable} ${dmSans.variable}`}>
+    <html lang="en" className={`${fraunces.variable} ${garet.variable}`}>
       <body className="m-0 p-0">{children}</body>
     </html>
   );
