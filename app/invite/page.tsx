@@ -291,7 +291,7 @@ export default function InvitePage() {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            paddingBottom: "48px",
+            paddingBottom: "24px",
             borderLeft: "2.2px solid #e6c3b8",
             borderRight: "2.2px solid #e6c3b8",
             borderBottom: "2.2px solid #e6c3b8",
@@ -320,7 +320,7 @@ export default function InvitePage() {
             {/* Form card */}
             <div id="rsvp-form" ref={cardRef} className="card-3d"
               onMouseMove={handleCardTilt} onMouseLeave={handleCardReset}
-              style={{ width: "calc(100% - 60px)", maxWidth: "480px", background: "#fff", borderRadius: "20px", padding: "36px 32px", textAlign: "left", marginBottom: "64px", border: "1px solid #e5ddd6", boxShadow: "0 8px 32px rgba(0,0,0,0.06)", animation: "fade-up 0.7s cubic-bezier(.22,1,.36,1) 0.95s both" }}>
+              style={{ width: "calc(100% - 60px)", maxWidth: "480px", background: "#fff", borderRadius: "20px", padding: "36px 32px", textAlign: "left", marginBottom: "24px", border: "1px solid #e5ddd6", boxShadow: "0 8px 32px rgba(0,0,0,0.06)", animation: "fade-up 0.7s cubic-bezier(.22,1,.36,1) 0.95s both" }}>
               {status === "success" ? (
                 <div style={{ textAlign: "center", padding: "32px 0" }}>
                   <p style={{ fontSize: "40px", marginBottom: "12px" }}>🎾</p>
