@@ -481,9 +481,7 @@ export default function InvitePage() {
               <p style={{ fontFamily: sans, color: "#c0a99c", fontSize: "12px", textAlign: "center", marginBottom: "20px", letterSpacing: "0.05em" }}>
                 She deserves the world — here's a little inspo 🎁
               </p>
-              <div style={{ overflow: "hidden", borderRadius: "12px", marginLeft: "-80px", marginRight: "-80px" }}>
-                <img src="/gift-ideas.png" alt="Gift Ideas" style={{ width: "100%", marginTop: "-6%", display: "block" }} />
-              </div>
+              <img src="/gift-ideas.png" alt="Gift Ideas" style={{ width: "100%", display: "block", marginTop: "-4%" }} />
               <p style={{ fontFamily: sans, fontSize: "clamp(13px,3.5vw,15px)", color: "#b0a090", textAlign: "center", lineHeight: 1.8, marginTop: "20px" }}>
                 <strong style={{ color: "#3d5a2a" }}>But truly, your presence is enough.</strong><br />
                 Sharing this celebration with you means<br />more than any present ever could.
