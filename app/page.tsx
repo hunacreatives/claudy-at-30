@@ -60,7 +60,7 @@ export default function IntroPage() {
               priority
             />
           </div>
-          <div style={{ animation: "pop-in 0.6s cubic-bezier(.36,.07,.19,.97) 1.1s both", width: "min(260px, 65vw)", marginTop: "5vh" }}>
+          <div style={{ animation: "pop-in 0.6s cubic-bezier(.36,.07,.19,.97) 1.1s both", width: "min(340px, 80vw)", marginTop: "5vh" }}>
             <button
               onClick={handleDink}
               style={{ animation: "btn-glow-pulse 2.2s ease-in-out 2s infinite", background: "linear-gradient(135deg, #a8be89 0%, #7d9e62 100%)" }}

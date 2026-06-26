@@ -457,7 +457,7 @@ export default function InvitePage() {
       }}>
         <div style={{ position: "relative", width: "min(720px, 88vw)" }}>
           {/* Section 3 elements — staggered so left/right don't align */}
-          <img src="/elements/champagne.webp" alt="" className="decor-depth" style={{ position: "absolute", left: 0, top: "15%", width: "clamp(100px,12vw,190px)", zIndex: 20, pointerEvents: "none", animation: "fade-in 0.6s ease 0.5s both, float-a 4s ease-in-out 0s infinite" }} />
+          <img src="/elements/champagne.webp" alt="" className="decor-depth" style={{ position: "absolute", left: 0, top: "5%", width: "clamp(100px,12vw,190px)", zIndex: 20, pointerEvents: "none", animation: "fade-in 0.6s ease 0.5s both, float-a 4s ease-in-out 0s infinite" }} />
           <img src="/elements/ball-pink.webp" alt="" className="decor-depth" style={{ position: "absolute", left: 0, top: "55%", width: "clamp(72px,8vw,130px)", zIndex: 20, pointerEvents: "none", animation: "fade-in 0.6s ease 0.3s both, float-b 3.5s ease-in-out 0s infinite" }} />
           <img src="/elements/martini.webp"   alt="" className="decor-depth" style={{ position: "absolute", right: 0, top: "35%", width: "clamp(100px,12vw,190px)", zIndex: 20, pointerEvents: "none", animation: "fade-in 0.6s ease 0.8s both, float-e 4.6s ease-in-out 0s infinite" }} />
           <img src="/elements/ball-pink.webp" alt="" className="decor-depth" style={{ position: "absolute", right: 0, top: "72%", width: "clamp(72px,8vw,130px)", zIndex: 20, pointerEvents: "none", animation: "fade-in 0.6s ease 0.6s both, float-d 3.8s ease-in-out 0s infinite" }} />
@@ -481,22 +481,18 @@ export default function InvitePage() {
               <p style={{ fontFamily: sans, color: "#c0a99c", fontSize: "12px", textAlign: "center", marginBottom: "20px", letterSpacing: "0.05em" }}>
                 She deserves the world — here's a little inspo 🎁
               </p>
-              <div className="gift-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px" }}>
-                {[
-                  { icon: "🏓", label: "Pickleball Paddle", sub: "She's obsessed" },
-                  { icon: "👟", label: "Court Sneakers", sub: "On-court & off" },
-                  { icon: "🍾", label: "Champagne", sub: "Celebration mode" },
-                  { icon: "💆", label: "Spa Day", sub: "She earns it" },
-                  { icon: "💎", label: "Jewelry", sub: "Something special" },
-                  { icon: "🎟️", label: "Experience Gift", sub: "Dinner, concert, trip" },
-                ].map((item) => (
-                  <div key={item.label} style={{ background: "#fff", borderRadius: "14px", padding: "16px", border: "1px solid #ede8e2", textAlign: "center" }}>
-                    <div style={{ fontSize: "28px", marginBottom: "6px" }}>{item.icon}</div>
-                    <p style={{ fontFamily: sans, fontWeight: 700, fontSize: "12px", color: "#3d5a2a", margin: "0 0 2px 0" }}>{item.label}</p>
-                    <p style={{ fontFamily: sans, fontSize: "11px", color: "#b0a090", margin: 0 }}>{item.sub}</p>
-                  </div>
-                ))}
+              <div style={{ overflow: "hidden", borderRadius: "12px", marginLeft: "-80px", marginRight: "-80px" }}>
+                <img src="/gift-ideas.png" alt="Gift Ideas" style={{ width: "100%", marginTop: "-6%", display: "block" }} />
               </div>
+              <p style={{ fontFamily: sans, fontSize: "clamp(13px,3.5vw,15px)", color: "#b0a090", textAlign: "center", lineHeight: 1.8, marginTop: "20px" }}>
+                <strong style={{ color: "#3d5a2a" }}>But truly, your presence is enough.</strong><br />
+                Sharing this celebration with you means<br />more than any present ever could.
+              </p>
+            </div>
+
+            {/* divider */}
+            <div style={{ width: "min(calc(100% - 32px), 480px)", marginBottom: "48px" }}>
+              <div style={{ height: "1px", background: "linear-gradient(to right, transparent, #e6c3b8, transparent)" }} />
             </div>
 
             {/* ── Directions ── */}
