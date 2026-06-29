@@ -244,12 +244,12 @@ export default function InvitePage() {
           overflow: "visible",
         }}>
           {/* Section 1 elements */}
-          <img src="/elements/ball-pink.webp" alt="" className="decor-depth" style={{ position: "absolute", left: 0, top: "12%", width: "clamp(72px,8vw,130px)", zIndex: 20, pointerEvents: "none", animation: "fade-in 0.6s ease 0.3s both, float-b 3.5s ease-in-out 0s infinite" }} />
-          <img src="/elements/champagne.webp" alt="" className="decor-depth" style={{ position: "absolute", left: 0, top: "42%", width: "clamp(110px,13vw,200px)", zIndex: 20, pointerEvents: "none", animation: "fade-in 0.6s ease 0.5s both, float-a 4s ease-in-out 0s infinite" }} />
-          <img src="/elements/bucket.webp"    alt="" className="decor-depth" style={{ position: "absolute", left: 0, top: "72%", width: "clamp(100px,12vw,190px)", zIndex: 20, pointerEvents: "none", animation: "fade-in 0.6s ease 0.9s both, float-f 5s ease-in-out 0s infinite" }} />
-          <img src="/elements/spritz.webp"    alt="" className="decor-depth" style={{ position: "absolute", right: 0, top: "8%",  width: "clamp(100px,12vw,190px)", zIndex: 20, pointerEvents: "none", animation: "fade-in 0.6s ease 0.4s both, float-c 4.2s ease-in-out 0s infinite" }} />
-          <img src="/elements/ball-pink.webp" alt="" className="decor-depth" style={{ position: "absolute", right: 0, top: "38%", width: "clamp(72px,8vw,130px)", zIndex: 20, pointerEvents: "none", animation: "fade-in 0.6s ease 0.6s both, float-d 3.8s ease-in-out 0s infinite" }} />
-          <img src="/elements/martini.webp"   alt="" className="decor-depth" style={{ position: "absolute", right: 0, top: "68%", width: "clamp(100px,12vw,190px)", zIndex: 20, pointerEvents: "none", animation: "fade-in 0.6s ease 0.8s both, float-e 4.6s ease-in-out 0s infinite" }} />
+          <img src="/elements/ball-pink.webp" alt="" className="decor-depth" style={{ position: "absolute", left: 0, top: "22%", width: "clamp(72px,8vw,130px)", zIndex: 20, pointerEvents: "none", animation: "fade-in 0.6s ease 0.3s both, float-b 3.5s ease-in-out 0s infinite" }} />
+          <img src="/elements/champagne.webp" alt="" className="decor-depth" style={{ position: "absolute", left: 0, top: "52%", width: "clamp(110px,13vw,200px)", zIndex: 20, pointerEvents: "none", animation: "fade-in 0.6s ease 0.5s both, float-a 4s ease-in-out 0s infinite" }} />
+          <img src="/elements/bucket.webp"    alt="" className="decor-depth" style={{ position: "absolute", left: 0, top: "82%", width: "clamp(100px,12vw,190px)", zIndex: 20, pointerEvents: "none", animation: "fade-in 0.6s ease 0.9s both, float-f 5s ease-in-out 0s infinite" }} />
+          <img src="/elements/spritz.webp"    alt="" className="decor-depth" style={{ position: "absolute", right: 0, top: "18%", width: "clamp(100px,12vw,190px)", zIndex: 20, pointerEvents: "none", animation: "fade-in 0.6s ease 0.4s both, float-c 4.2s ease-in-out 0s infinite" }} />
+          <img src="/elements/ball-pink.webp" alt="" className="decor-depth" style={{ position: "absolute", right: 0, top: "48%", width: "clamp(72px,8vw,130px)", zIndex: 20, pointerEvents: "none", animation: "fade-in 0.6s ease 0.6s both, float-d 3.8s ease-in-out 0s infinite" }} />
+          <img src="/elements/martini.webp"   alt="" className="decor-depth" style={{ position: "absolute", right: 0, top: "78%", width: "clamp(100px,12vw,190px)", zIndex: 20, pointerEvents: "none", animation: "fade-in 0.6s ease 0.8s both, float-e 4.6s ease-in-out 0s infinite" }} />
 
 
           {/* ── Arch SVG ── */}
@@ -405,6 +405,65 @@ export default function InvitePage() {
               )}
             </div>
 
+          </div>
+        </div>
+      </div>
+
+      {/* ── What to Wear — striped bg + cream card ── */}
+      <div style={{
+        width: "100%",
+        backgroundImage: "url('/bg-stripes.webp')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundAttachment: "fixed",
+        display: "flex",
+        justifyContent: "center",
+        padding: "32px 24px 16px",
+      }}>
+        <div style={{ position: "relative", width: "min(720px, 88vw)" }}>
+          {/* Section elements — staggered */}
+          <img src="/elements/spritz.webp" alt="" className="decor-depth" style={{ position: "absolute", left: 0, top: "10%", width: "clamp(90px,11vw,170px)", zIndex: 20, pointerEvents: "none", animation: "fade-in 0.6s ease 0.7s both, float-a 4s ease-in-out 0s infinite" }} />
+          <img src="/elements/ball-pink.webp" alt="" className="decor-depth" style={{ position: "absolute", right: 0, top: "60%", width: "clamp(64px,7vw,110px)", zIndex: 20, pointerEvents: "none", animation: "fade-in 0.6s ease 0.8s both, float-d 3.8s ease-in-out 0s infinite" }} />
+          <div style={{
+            background: "#f9f8f4",
+            borderRadius: "28px",
+            border: "2.2px solid #e6c3b8",
+            padding: "48px 24px",
+            boxShadow: "0 24px 60px rgba(0,0,0,0.10), 0 6px 20px rgba(0,0,0,0.06)",
+          }}>
+            <h3 style={{ fontFamily: display, fontWeight: 900, fontStyle: "italic", color: "#3d5a2a", fontSize: "clamp(1.6rem,6vw,2rem)", marginBottom: "6px", textAlign: "center" }}>
+              What to Wear
+            </h3>
+            <p style={{ fontFamily: sans, color: "#c0a99c", fontSize: "12px", textAlign: "center", marginBottom: "28px", letterSpacing: "0.05em", lineHeight: 1.7 }}>
+              Come dressed in <strong style={{ color: "#3d5a2a" }}>white</strong> or <strong style={{ color: "#7a9a6a" }}>green</strong> — let&apos;s match the court. 🎾
+            </p>
+            <div style={{ display: "flex", justifyContent: "center", gap: "48px" }}>
+              <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "12px" }}>
+                <div style={{
+                  width: "clamp(64px,16vw,90px)",
+                  height: "clamp(64px,16vw,90px)",
+                  borderRadius: "50%",
+                  background: "#ffffff",
+                  border: "1px solid #e5ddd6",
+                  boxShadow: "0 10px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.08)",
+                }} />
+                <p style={{ fontFamily: sans, textTransform: "uppercase", letterSpacing: "0.15em", color: "#9aa885", fontSize: "11px", fontWeight: 600, margin: 0 }}>
+                  White
+                </p>
+              </div>
+              <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "12px" }}>
+                <div style={{
+                  width: "clamp(64px,16vw,90px)",
+                  height: "clamp(64px,16vw,90px)",
+                  borderRadius: "50%",
+                  background: "#7a9a6a",
+                  boxShadow: "0 10px 24px rgba(122,154,106,0.35), 0 4px 8px rgba(0,0,0,0.10)",
+                }} />
+                <p style={{ fontFamily: sans, textTransform: "uppercase", letterSpacing: "0.15em", color: "#9aa885", fontSize: "11px", fontWeight: 600, margin: 0 }}>
+                  Green
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
