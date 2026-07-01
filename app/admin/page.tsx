@@ -6,7 +6,6 @@ type RSVP = {
   id: string;
   name: string;
   email: string;
-  plus_ones: number;
   message: string | null;
   created_at: string;
 };
@@ -52,8 +51,6 @@ export default function AdminPage() {
     setDeleting(false);
   };
 
-  const totalGuests = rsvps.reduce((sum, r) => sum + 1 + r.plus_ones, 0);
-
   if (!authed) {
     return (
       <div className="min-h-screen bg-[#f5efe0] flex items-center justify-center px-4">
@@ -90,7 +87,7 @@ export default function AdminPage() {
               Claudy&apos;s 30th — RSVPs
             </h1>
             <p className="text-[#7b9a6a] text-sm mt-1">
-              {rsvps.length} responses · {totalGuests} total guests
+              {rsvps.length} {rsvps.length === 1 ? "response" : "responses"}
             </p>
           </div>
           <button
@@ -112,7 +109,6 @@ export default function AdminPage() {
                 <tr>
                   <th className="text-left px-5 py-3 font-semibold">Name</th>
                   <th className="text-left px-5 py-3 font-semibold">Email</th>
-                  <th className="text-center px-4 py-3 font-semibold">+Guests</th>
                   <th className="text-left px-5 py-3 font-semibold">Message</th>
                   <th className="text-left px-5 py-3 font-semibold">Date</th>
                   <th className="px-4 py-3"></th>
@@ -126,7 +122,6 @@ export default function AdminPage() {
                   >
                     <td className="px-5 py-3 font-medium text-[#3d5a2a]">{r.name}</td>
                     <td className="px-5 py-3 text-[#555]">{r.email}</td>
-                    <td className="px-4 py-3 text-center text-[#555]">{1 + r.plus_ones}</td>
                     <td className="px-5 py-3 text-[#555] italic max-w-xs truncate">
                       {r.message || "—"}
                     </td>

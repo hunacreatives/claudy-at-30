@@ -3,7 +3,7 @@
 import { useState, useRef } from "react";
 
 export default function InvitePage() {
-  const [form, setForm] = useState({ name: "", email: "", plusOnes: "0", message: "" });
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -17,7 +17,7 @@ export default function InvitePage() {
       });
       if (!res.ok) throw new Error();
       setStatus("success");
-      setForm({ name: "", email: "", plusOnes: "0", message: "" });
+      setForm({ name: "", email: "", message: "" });
     } catch {
       setStatus("error");
     }
@@ -384,13 +384,6 @@ export default function InvitePage() {
                     <input required type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} style={inputStyle} />
                   </div>
                   <div>
-                    <label style={{ fontFamily: sans, fontSize: "11px", color: "#9aa885", display: "block", marginBottom: "6px" }}>Will you be bringing anyone?</label>
-                    <select value={form.plusOnes} onChange={(e) => setForm({ ...form, plusOnes: e.target.value })} style={{ ...inputStyle, appearance: "auto" as "auto" }}>
-                      <option value="0">Just me</option>
-                      <option value="1">+1</option>
-                    </select>
-                  </div>
-                  <div>
                     <label style={{ fontFamily: sans, fontSize: "11px", color: "#9aa885", display: "block", marginBottom: "6px" }}>A Thoughtful Message</label>
                     <textarea rows={4} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} style={{ ...inputStyle, resize: "none" }} />
                   </div>
@@ -418,7 +411,7 @@ export default function InvitePage() {
         backgroundAttachment: "fixed",
         display: "flex",
         justifyContent: "center",
-        padding: "32px 24px 16px",
+        padding: "32px 24px 0",
       }}>
         <div style={{ position: "relative", width: "min(720px, 88vw)" }}>
           {/* Section elements — staggered */}

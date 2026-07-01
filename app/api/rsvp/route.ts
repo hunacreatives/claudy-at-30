@@ -10,7 +10,7 @@ const supabase = createClient(
 const resend = new Resend(process.env.RESEND_API_KEY!);
 
 export async function POST(req: Request) {
-  const { name, email, plusOnes, message } = await req.json();
+  const { name, email, message } = await req.json();
 
   if (!name || !email) {
     return NextResponse.json({ error: "Name and email required" }, { status: 400 });
@@ -20,7 +20,6 @@ export async function POST(req: Request) {
   const { error: dbError } = await supabase.from("claudy_rsvps").insert({
     name,
     email,
-    plus_ones: parseInt(plusOnes ?? "0"),
     message: message || null,
   });
 
@@ -28,9 +27,6 @@ export async function POST(req: Request) {
     console.error("DB error:", dbError);
     return NextResponse.json({ error: "Failed to save RSVP" }, { status: 500 });
   }
-
-  // Send email notification
-  const guestText = parseInt(plusOnes) > 0 ? `+${plusOnes} guest(s)` : "Just themselves";
 
   await resend.emails.send({
     from: "Claudy's 30th <noreply@hunacreatives.com>",
@@ -42,7 +38,6 @@ export async function POST(req: Request) {
         <table style="width: 100%; border-collapse: collapse; margin-top: 16px;">
           <tr><td style="padding: 8px 0; color: #666; width: 120px;">Name</td><td style="padding: 8px 0; font-weight: 600;">${name}</td></tr>
           <tr><td style="padding: 8px 0; color: #666;">Email</td><td style="padding: 8px 0;">${email}</td></tr>
-          <tr><td style="padding: 8px 0; color: #666;">Guests</td><td style="padding: 8px 0;">${guestText}</td></tr>
           ${message ? `<tr><td style="padding: 8px 0; color: #666; vertical-align: top;">Message</td><td style="padding: 8px 0; font-style: italic;">"${message}"</td></tr>` : ""}
         </table>
         <p style="margin-top: 24px; color: #7b9a6a; font-size: 12px;">Sent from claudyat30.com</p>
