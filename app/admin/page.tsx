@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 type RSVP = {
   id: string;
@@ -9,6 +9,16 @@ type RSVP = {
   message: string | null;
   created_at: string;
 };
+
+type Filter = "all" | "with-message" | "no-message";
+
+function formatDate(iso: string) {
+  return new Date(iso).toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  });
+}
 
 export default function AdminPage() {
   const [password, setPassword] = useState("");
@@ -19,6 +29,8 @@ export default function AdminPage() {
   const [confirmId, setConfirmId] = useState<string | null>(null);
   const [deleting, setDeleting] = useState(false);
   const [selectedRsvp, setSelectedRsvp] = useState<RSVP | null>(null);
+  const [search, setSearch] = useState("");
+  const [filter, setFilter] = useState<Filter>("all");
 
   // Validate by asking the server (which checks the password and uses the
   // service-role key). No data is reachable without the correct password.
@@ -52,6 +64,23 @@ export default function AdminPage() {
     setDeleting(false);
   };
 
+  const withMessageCount = useMemo(
+    () => rsvps.filter((r) => r.message).length,
+    [rsvps]
+  );
+
+  const filteredRsvps = useMemo(() => {
+    const q = search.trim().toLowerCase();
+    return rsvps.filter((r) => {
+      if (filter === "with-message" && !r.message) return false;
+      if (filter === "no-message" && r.message) return false;
+      if (!q) return true;
+      return (
+        r.name.toLowerCase().includes(q) || r.email.toLowerCase().includes(q)
+      );
+    });
+  }, [rsvps, search, filter]);
+
   if (!authed) {
     return (
       <div className="min-h-screen bg-[#f5efe0] flex items-center justify-center px-4">
@@ -79,55 +108,113 @@ export default function AdminPage() {
     );
   }
 
+  const filters: { key: Filter; label: string }[] = [
+    { key: "all", label: "All" },
+    { key: "with-message", label: "With Message" },
+    { key: "no-message", label: "No Message" },
+  ];
+
   return (
-    <div className="min-h-screen bg-[#f5efe0] px-6 py-12">
-      <div className="max-w-4xl mx-auto">
-        <div className="mb-8 flex items-end justify-between">
+    <div className="min-h-screen bg-[#f7f5f0] px-6 py-10">
+      <div className="max-w-6xl mx-auto">
+        <div className="mb-6 flex items-start justify-between">
           <div>
-            <h1 className="font-display font-bold text-[#3d5a2a] text-3xl">
-              Claudy&apos;s 30th — RSVPs
-            </h1>
-            <p className="text-[#7b9a6a] text-sm mt-1">
-              {rsvps.length} {rsvps.length === 1 ? "response" : "responses"}
-            </p>
+            <h1 className="font-bold text-gray-900 text-2xl">RSVP Responses</h1>
+            <p className="text-gray-400 text-sm mt-1">Claudy&apos;s 30th</p>
           </div>
           <button
             onClick={() => location.reload()}
-            className="text-sm text-[#7b9a6a] hover:text-[#3d5a2a] underline cursor-pointer"
+            className="text-sm text-gray-600 bg-white border border-gray-200 rounded-lg px-4 py-2 hover:bg-gray-50 cursor-pointer transition-colors"
           >
             Refresh
           </button>
         </div>
 
+        {!loading && rsvps.length > 0 && (
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-6">
+            <div className="bg-white rounded-xl border border-gray-100 shadow-sm px-5 py-4">
+              <p className="text-2xl font-bold text-gray-900">{rsvps.length}</p>
+              <p className="text-gray-400 text-xs mt-1">Total RSVPs</p>
+            </div>
+            <div className="bg-white rounded-xl border border-gray-100 shadow-sm px-5 py-4">
+              <p className="text-2xl font-bold text-gray-900">{withMessageCount}</p>
+              <p className="text-gray-400 text-xs mt-1">With Message</p>
+            </div>
+            <div className="bg-white rounded-xl border border-gray-100 shadow-sm px-5 py-4">
+              <p className="text-2xl font-bold text-gray-900">
+                {rsvps.length - withMessageCount}
+              </p>
+              <p className="text-gray-400 text-xs mt-1">No Message</p>
+            </div>
+          </div>
+        )}
+
+        {!loading && rsvps.length > 0 && (
+          <div className="flex flex-wrap items-center gap-3 mb-4">
+            <input
+              type="text"
+              placeholder="Search name or email..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="flex-1 min-w-[200px] border border-gray-200 rounded-lg px-4 py-2 text-sm text-gray-700 outline-none focus:border-gray-400 bg-white"
+            />
+            <div className="inline-flex bg-white border border-gray-200 rounded-lg p-1">
+              {filters.map((f) => (
+                <button
+                  key={f.key}
+                  onClick={() => setFilter(f.key)}
+                  className={`text-sm px-3 py-1.5 rounded-md cursor-pointer transition-colors ${
+                    filter === f.key
+                      ? "bg-gray-900 text-white"
+                      : "text-gray-500 hover:bg-gray-50"
+                  }`}
+                >
+                  {f.label}
+                </button>
+              ))}
+            </div>
+            <p className="text-gray-400 text-xs ml-auto">
+              {filteredRsvps.length} {filteredRsvps.length === 1 ? "record" : "records"}
+            </p>
+          </div>
+        )}
+
         {loading ? (
-          <p className="text-[#7b9a6a]">Loading...</p>
+          <p className="text-gray-400">Loading...</p>
         ) : rsvps.length === 0 ? (
-          <p className="text-[#7b9a6a]">No RSVPs yet.</p>
+          <p className="text-gray-400">No RSVPs yet.</p>
         ) : (
-          <div className="bg-white rounded-2xl shadow-md overflow-hidden">
+          <div className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden overflow-x-auto">
             <table className="w-full text-sm">
-              <thead className="bg-[#3d5a2a] text-white">
+              <thead className="bg-gray-50">
                 <tr>
-                  <th className="text-left px-5 py-3 font-semibold">Name</th>
-                  <th className="text-left px-5 py-3 font-semibold">Email</th>
-                  <th className="text-left px-5 py-3 font-semibold">Message</th>
-                  <th className="text-left px-5 py-3 font-semibold">Date</th>
+                  <th className="text-left px-5 py-3 font-medium text-gray-400 text-xs uppercase tracking-wide">
+                    Name
+                  </th>
+                  <th className="text-left px-5 py-3 font-medium text-gray-400 text-xs uppercase tracking-wide">
+                    Email
+                  </th>
+                  <th className="text-left px-5 py-3 font-medium text-gray-400 text-xs uppercase tracking-wide">
+                    Message
+                  </th>
+                  <th className="text-left px-5 py-3 font-medium text-gray-400 text-xs uppercase tracking-wide whitespace-nowrap">
+                    Submitted
+                  </th>
                   <th className="px-4 py-3"></th>
                 </tr>
               </thead>
-              <tbody>
-                {rsvps.map((r, i) => (
-                  <tr
-                    key={r.id}
-                    className={i % 2 === 0 ? "bg-white" : "bg-[#f5efe0]/60"}
-                  >
-                    <td className="px-5 py-3 font-medium text-[#3d5a2a]">{r.name}</td>
-                    <td className="px-5 py-3 text-[#555]">{r.email}</td>
-                    <td className="px-5 py-3 text-[#555] italic max-w-xs truncate">
+              <tbody className="divide-y divide-gray-100">
+                {filteredRsvps.map((r) => (
+                  <tr key={r.id} className="hover:bg-gray-50/60 transition-colors">
+                    <td className="px-5 py-3 font-medium text-gray-900 whitespace-nowrap">
+                      {r.name}
+                    </td>
+                    <td className="px-5 py-3 text-gray-500 whitespace-nowrap">{r.email}</td>
+                    <td className="px-5 py-3 text-gray-500 italic max-w-[240px]">
                       {r.message ? (
                         <button
                           onClick={() => setSelectedRsvp(r)}
-                          className="hover:text-[#3d5a2a] hover:underline cursor-pointer text-left"
+                          className="truncate block max-w-[240px] text-left hover:text-gray-900 hover:underline cursor-pointer"
                         >
                           {r.message}
                         </button>
@@ -135,13 +222,8 @@ export default function AdminPage() {
                         "—"
                       )}
                     </td>
-                    <td className="px-5 py-3 text-[#999] whitespace-nowrap">
-                      {new Date(r.created_at).toLocaleDateString("en-US", {
-                        month: "short",
-                        day: "numeric",
-                        hour: "2-digit",
-                        minute: "2-digit",
-                      })}
+                    <td className="px-5 py-3 text-gray-400 whitespace-nowrap">
+                      {formatDate(r.created_at)}
                     </td>
                     <td className="px-4 py-3 text-right whitespace-nowrap">
                       {confirmId === r.id ? (
@@ -163,14 +245,21 @@ export default function AdminPage() {
                       ) : (
                         <button
                           onClick={() => setConfirmId(r.id)}
-                          className="text-xs text-red-400 hover:text-red-600 cursor-pointer transition-colors"
+                          className="text-xs text-red-500 hover:text-red-600 hover:underline cursor-pointer transition-colors"
                         >
-                          Delete
+                          Remove
                         </button>
                       )}
                     </td>
                   </tr>
                 ))}
+                {filteredRsvps.length === 0 && (
+                  <tr>
+                    <td colSpan={5} className="px-5 py-8 text-center text-gray-400">
+                      No matching RSVPs.
+                    </td>
+                  </tr>
+                )}
               </tbody>
             </table>
           </div>
@@ -188,27 +277,18 @@ export default function AdminPage() {
           >
             <div className="flex items-start justify-between mb-4">
               <div>
-                <p className="font-display font-bold text-[#3d5a2a] text-xl">
-                  {selectedRsvp.name}
-                </p>
-                <p className="text-[#7b9a6a] text-sm">{selectedRsvp.email}</p>
+                <p className="font-bold text-gray-900 text-xl">{selectedRsvp.name}</p>
+                <p className="text-gray-400 text-sm">{selectedRsvp.email}</p>
               </div>
               <button
                 onClick={() => setSelectedRsvp(null)}
-                className="text-[#999] hover:text-[#3d5a2a] cursor-pointer text-xl leading-none"
+                className="text-gray-400 hover:text-gray-900 cursor-pointer text-xl leading-none"
               >
                 ×
               </button>
             </div>
-            <p className="text-[#555] whitespace-pre-wrap">{selectedRsvp.message}</p>
-            <p className="text-[#999] text-xs mt-4">
-              {new Date(selectedRsvp.created_at).toLocaleDateString("en-US", {
-                month: "short",
-                day: "numeric",
-                hour: "2-digit",
-                minute: "2-digit",
-              })}
-            </p>
+            <p className="text-gray-600 whitespace-pre-wrap">{selectedRsvp.message}</p>
+            <p className="text-gray-400 text-xs mt-4">{formatDate(selectedRsvp.created_at)}</p>
           </div>
         </div>
       )}
