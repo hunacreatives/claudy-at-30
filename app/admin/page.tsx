@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useMemo, useState } from "react";
 
 type RSVP = {
@@ -83,23 +84,39 @@ export default function AdminPage() {
 
   if (!authed) {
     return (
-      <div className="min-h-screen bg-[#f5efe0] flex items-center justify-center px-4">
+      <div
+        className="min-h-screen flex items-center justify-center px-4"
+        style={{
+          backgroundImage: "url('/bg-court.webp')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
         <form
           onSubmit={handleLogin}
-          className="bg-white rounded-2xl p-10 shadow-md w-full max-w-xs text-center"
+          className="bg-white/95 backdrop-blur rounded-3xl p-10 shadow-xl w-full max-w-xs text-center"
         >
-          <p className="font-display font-bold text-[#3d5a2a] text-2xl mb-6">Admin Access</p>
+          <Image
+            src="/elements/paddle.webp"
+            alt=""
+            width={48}
+            height={48}
+            className="mx-auto mb-4"
+          />
+          <p className="font-display font-bold text-[#3d5a2a] text-2xl mb-1">Admin Access</p>
+          <p className="text-[#7b9a6a] text-xs mb-6">Claudy&apos;s 30th</p>
           <input
             type="password"
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full border border-[#d4c5a9] rounded-lg px-4 py-2.5 text-sm text-[#3d5a2a] outline-none focus:border-[#7b9a6a] mb-3"
+            className="w-full border border-[#d4c5a9] rounded-full px-4 py-2.5 text-sm text-[#3d5a2a] outline-none focus:border-[#7b9a6a] mb-3 text-center"
           />
           {error && <p className="text-red-500 text-xs mb-3">Incorrect password</p>}
           <button
             type="submit"
-            className="w-full bg-[#3d5a2a] text-white rounded-lg py-2.5 text-sm font-semibold hover:bg-[#2e4520] transition-colors cursor-pointer"
+            style={{ background: "linear-gradient(135deg, #a8be89 0%, #7d9e62 100%)" }}
+            className="w-full text-white rounded-full py-2.5 text-sm font-bold hover:brightness-110 transition-all cursor-pointer"
           >
             Enter
           </button>
