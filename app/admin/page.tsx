@@ -18,6 +18,7 @@ export default function AdminPage() {
   const [loading, setLoading] = useState(false);
   const [confirmId, setConfirmId] = useState<string | null>(null);
   const [deleting, setDeleting] = useState(false);
+  const [selectedRsvp, setSelectedRsvp] = useState<RSVP | null>(null);
 
   // Validate by asking the server (which checks the password and uses the
   // service-role key). No data is reachable without the correct password.
@@ -123,7 +124,16 @@ export default function AdminPage() {
                     <td className="px-5 py-3 font-medium text-[#3d5a2a]">{r.name}</td>
                     <td className="px-5 py-3 text-[#555]">{r.email}</td>
                     <td className="px-5 py-3 text-[#555] italic max-w-xs truncate">
-                      {r.message || "—"}
+                      {r.message ? (
+                        <button
+                          onClick={() => setSelectedRsvp(r)}
+                          className="hover:text-[#3d5a2a] hover:underline cursor-pointer text-left"
+                        >
+                          {r.message}
+                        </button>
+                      ) : (
+                        "—"
+                      )}
                     </td>
                     <td className="px-5 py-3 text-[#999] whitespace-nowrap">
                       {new Date(r.created_at).toLocaleDateString("en-US", {
@@ -166,6 +176,42 @@ export default function AdminPage() {
           </div>
         )}
       </div>
+
+      {selectedRsvp && (
+        <div
+          className="fixed inset-0 bg-black/40 flex items-center justify-center px-4 z-50"
+          onClick={() => setSelectedRsvp(null)}
+        >
+          <div
+            className="bg-white rounded-2xl p-8 shadow-md w-full max-w-lg"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-start justify-between mb-4">
+              <div>
+                <p className="font-display font-bold text-[#3d5a2a] text-xl">
+                  {selectedRsvp.name}
+                </p>
+                <p className="text-[#7b9a6a] text-sm">{selectedRsvp.email}</p>
+              </div>
+              <button
+                onClick={() => setSelectedRsvp(null)}
+                className="text-[#999] hover:text-[#3d5a2a] cursor-pointer text-xl leading-none"
+              >
+                ×
+              </button>
+            </div>
+            <p className="text-[#555] whitespace-pre-wrap">{selectedRsvp.message}</p>
+            <p className="text-[#999] text-xs mt-4">
+              {new Date(selectedRsvp.created_at).toLocaleDateString("en-US", {
+                month: "short",
+                day: "numeric",
+                hour: "2-digit",
+                minute: "2-digit",
+              })}
+            </p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
